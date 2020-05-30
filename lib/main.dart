@@ -6,33 +6,25 @@ void main() => runApp(XylophoneApp());
 class XylophoneApp extends StatelessWidget {
   final audioPlayer = AudioCache();
 
-  FlatButton getButton(int soundNumber, Color buttonColor, String name) {
+  FlatButton getButton({int tag, String text, Color color}) {
     return FlatButton(
       onPressed: () {
-        audioPlayer.play('note$soundNumber.wav');
+        audioPlayer.play('note$tag.wav');
       },
-      color: buttonColor,
+      color: color,
       textTheme: ButtonTextTheme.primary,
       child: Text(
-        '$name',
+        '$text',
         style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0),
       ),
     );
-  }
-
-  Widget widget({int tag, String text, Color color}) {
-    Widget w = SizedBox(
-      child: getButton(tag, color, text),
-      height: 50.0,
-      width: double.infinity,
-    );
-    return w;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text('Xylophone'),
           backgroundColor: Colors.red,
@@ -41,28 +33,35 @@ class XylophoneApp extends StatelessWidget {
           bottom: false,
           top: true,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                child: widget(tag: 1, text: 'X', color: Colors.purple.shade700),
+                child:
+                    getButton(tag: 1, text: 'X', color: Colors.purple.shade700),
               ),
               Expanded(
-                child: widget(tag: 2, text: 'Y', color: Colors.pink.shade700),
+                child:
+                    getButton(tag: 2, text: 'Y', color: Colors.pink.shade700),
               ),
               Expanded(
-                child: widget(tag: 3, text: 'L', color: Colors.blue.shade700),
+                child:
+                    getButton(tag: 3, text: 'L', color: Colors.blue.shade700),
               ),
               Expanded(
-                child: widget(tag: 4, text: 'O', color: Colors.orange.shade700),
+                child:
+                    getButton(tag: 4, text: 'O', color: Colors.orange.shade700),
               ),
               Expanded(
-                child: widget(tag: 5, text: 'P', color: Colors.indigo.shade700),
+                child:
+                    getButton(tag: 5, text: 'P', color: Colors.indigo.shade700),
               ),
               Expanded(
-                child: widget(tag: 6, text: 'H', color: Colors.cyan.shade700),
+                child:
+                    getButton(tag: 6, text: 'H', color: Colors.cyan.shade700),
               ),
               Expanded(
-                child: widget(tag: 7, text: 'N', color: Colors.teal.shade700),
+                child:
+                    getButton(tag: 7, text: 'N', color: Colors.teal.shade700),
               ),
             ],
           ),
