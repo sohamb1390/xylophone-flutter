@@ -20,7 +20,7 @@ class XylophoneApp extends StatelessWidget {
     );
   }
 
-  Widget widget(int tag, String text, Color color) {
+  Widget widget({int tag, String text, Color color}) {
     Widget w = SizedBox(
       child: getButton(tag, color, text),
       height: 50.0,
@@ -44,25 +44,25 @@ class XylophoneApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: widget(1, 'X', Colors.purple.shade700),
+                child: widget(tag: 1, text: 'X', color: Colors.purple.shade700),
               ),
               Expanded(
-                child: widget(2, 'Y', Colors.pink.shade700),
+                child: widget(tag: 2, text: 'Y', color: Colors.pink.shade700),
               ),
               Expanded(
-                child: widget(3, 'L', Colors.blue.shade700),
+                child: widget(tag: 3, text: 'L', color: Colors.blue.shade700),
               ),
               Expanded(
-                child: widget(4, 'O', Colors.orange.shade700),
+                child: widget(tag: 4, text: 'O', color: Colors.orange.shade700),
               ),
               Expanded(
-                child: widget(5, 'P', Colors.indigo.shade700),
+                child: widget(tag: 5, text: 'P', color: Colors.indigo.shade700),
               ),
               Expanded(
-                child: widget(6, 'H', Colors.cyan.shade700),
+                child: widget(tag: 6, text: 'H', color: Colors.cyan.shade700),
               ),
               Expanded(
-                child: widget(7, 'N', Colors.teal.shade700),
+                child: widget(tag: 7, text: 'N', color: Colors.teal.shade700),
               ),
             ],
           ),
