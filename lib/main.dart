@@ -4,10 +4,11 @@ import 'package:audioplayers/audio_cache.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
+  final audioPlayer = AudioCache();
+
   FlatButton getButton(String fileName, Color buttonColor, String name) {
     return FlatButton(
       onPressed: () {
-        final audioPlayer = AudioCache();
         audioPlayer.play('$fileName.wav');
       },
       color: buttonColor,
