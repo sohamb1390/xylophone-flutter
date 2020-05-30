@@ -6,10 +6,10 @@ void main() => runApp(XylophoneApp());
 class XylophoneApp extends StatelessWidget {
   final audioPlayer = AudioCache();
 
-  FlatButton getButton(String fileName, Color buttonColor, String name) {
+  FlatButton getButton(int soundNumber, Color buttonColor, String name) {
     return FlatButton(
       onPressed: () {
-        audioPlayer.play('$fileName.wav');
+        audioPlayer.play('note$soundNumber.wav');
       },
       color: buttonColor,
       textTheme: ButtonTextTheme.primary,
@@ -18,6 +18,15 @@ class XylophoneApp extends StatelessWidget {
         style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0),
       ),
     );
+  }
+
+  Widget widget(int tag, String text, Color color) {
+    Widget w = SizedBox(
+      child: getButton(tag, color, text),
+      height: 50.0,
+      width: double.infinity,
+    );
+    return w;
   }
 
   @override
@@ -35,53 +44,25 @@ class XylophoneApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: SizedBox(
-                  child: getButton('note1', Colors.purple.shade700, 'X'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(1, 'X', Colors.purple.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note2', Colors.pink.shade700, 'y'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(2, 'Y', Colors.pink.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note3', Colors.blue.shade700, 'l'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(3, 'L', Colors.blue.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note4', Colors.orange.shade700, 'o'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(4, 'O', Colors.orange.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note5', Colors.indigo.shade700, 'p'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(5, 'P', Colors.indigo.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note6', Colors.cyan.shade700, 'h'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(6, 'H', Colors.cyan.shade700),
               ),
               Expanded(
-                child: SizedBox(
-                  child: getButton('note7', Colors.teal.shade700, 'n'),
-                  height: 50.0,
-                  width: double.infinity,
-                ),
+                child: widget(7, 'N', Colors.teal.shade700),
               ),
             ],
           ),
