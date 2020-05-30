@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:tuple/tuple.dart';
 
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   final audioPlayer = AudioCache();
 
-  FlatButton getButton({int tag, String text, Color color}) {
+  List<Widget> getWidgets() {
+    final children = <Widget>[];
+    final buttonDetailsDict = {
+      'X': Tuple2<Color, int>(Colors.purple.shade700, 1),
+      'Y': Tuple2<Color, int>(Colors.pink.shade700, 2),
+      'L': Tuple2<Color, int>(Colors.blue.shade700, 3),
+      'O': Tuple2<Color, int>(Colors.orange.shade700, 4),
+      'P': Tuple2<Color, int>(Colors.indigo.shade700, 5),
+      'H': Tuple2<Color, int>(Colors.cyan.shade700, 6),
+      'N': Tuple2<Color, int>(Colors.teal.shade700, 7)
+    };
+    for (var key in buttonDetailsDict.keys) {
+      var tupple = buttonDetailsDict[key];
+      var color = tupple.item1;
+      var tag = tupple.item2;
+      var fileName = 'note$tag.wav';
+      children.add(
+        Expanded(
+          child: getButton(
+            tag: tag,
+            fileName: fileName,
+            color: color,
+            text: key,
+          ),
+        ),
+      );
+    }
+    return children;
+  }
+
+  FlatButton getButton({int tag, String fileName, Color color, String text}) {
     return FlatButton(
       onPressed: () {
-        audioPlayer.play('note$tag.wav');
+        audioPlayer.play(fileName);
       },
       color: color,
       textTheme: ButtonTextTheme.primary,
@@ -34,36 +65,7 @@ class XylophoneApp extends StatelessWidget {
           top: true,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                child:
-                    getButton(tag: 1, text: 'X', color: Colors.purple.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 2, text: 'Y', color: Colors.pink.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 3, text: 'L', color: Colors.blue.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 4, text: 'O', color: Colors.orange.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 5, text: 'P', color: Colors.indigo.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 6, text: 'H', color: Colors.cyan.shade700),
-              ),
-              Expanded(
-                child:
-                    getButton(tag: 7, text: 'N', color: Colors.teal.shade700),
-              ),
-            ],
+            children: getWidgets(),
           ),
         ),
       ),
