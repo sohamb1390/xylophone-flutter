@@ -18,6 +18,7 @@ class XylophoneApp extends StatelessWidget {
       'H': Tuple2<Color, int>(Colors.cyan.shade700, 6),
       'N': Tuple2<Color, int>(Colors.teal.shade700, 7)
     };
+
     for (var key in buttonDetailsDict.keys) {
       var tupple = buttonDetailsDict[key];
       var color = tupple.item1;
@@ -51,15 +52,17 @@ class XylophoneApp extends StatelessWidget {
     );
   }
 
+  AppBar getAppBar() => AppBar(
+        title: Text('Xylophone'),
+        backgroundColor: Colors.red,
+      );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text('Xylophone'),
-          backgroundColor: Colors.red,
-        ),
+        appBar: getAppBar(),
         body: SafeArea(
           bottom: false,
           top: true,
